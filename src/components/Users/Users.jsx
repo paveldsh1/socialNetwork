@@ -1,5 +1,5 @@
 import React from 'react';
-import './Users.css';
+import s from './Users.module.scss';
 
 class Users extends React.Component {
     
@@ -42,19 +42,19 @@ class Users extends React.Component {
         if(this.props.users.length !== 0) 
             return(
                 this.props.users.map(user => (
-                    <div key={user.id} className="user-card">
-                        <div className="user-avatar">
-                            <div className="avatar">•ᴗ•</div>
+                    <div key={user.id} className={s['user-card']}>
+                        <div className={s['user-avatar']}>
+                            <div className={s.avatar}>•ᴗ•</div>
                             <button 
-                                className={user.followed ? 'unfollow-btn' : 'follow-btn'}
+                                className={user.followed ? s['unfollow-btn'] : s['follow-btn']}
                                 onClick={() => user.followed ? this.props.unfollow(user.id) : this.props.follow(user.id)}
                             >
                                 {user.followed ? 'Unfollow' : 'Follow'}
                             </button>
                         </div>
-                        <div className="user-info">
-                            <div className="user-name">{user.name}</div>
-                            <div className="user-status">{user.status}</div>
+                        <div className={s['user-info']}>
+                            <div className={s['user-name']}>{user.name}</div>
+                            <div className={s['user-status']}>{user.status}</div>
                             {/* <div className="user-location">{user.location.country}, {user.location.city}</div> */}
                         </div>
                     </div>
@@ -66,8 +66,8 @@ class Users extends React.Component {
         return(
             <div>
                 {/* <button onClick={this.getUsers}>Get users</button> */}
-                <div className="users">
-                    <div className="users-list">
+                <div className={s.users}>
+                    <div className={s['users-list']}>
                         {this.getUsersList()}
                     </div>
                     <div style={{ marginTop: '10px' }}>
