@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Users.module.scss';
 import Preloader from '../common/Preloader/Preloader';
 import Pagination from '../common/Pagination/Pagination';
+import { NavLink } from 'react-router-dom';
 
 class Users extends React.Component {
     
@@ -48,7 +49,9 @@ class Users extends React.Component {
                 this.props.users.map(user => (
                     <div key={user.id} className={s['user-card']}>
                         <div className={s['user-avatar']}>
-                            <div className={s.avatar}>•ᴗ•</div>
+                            <NavLink to={'/profile/' + user.id} className={s['avatar-link']}>
+                                <div className={s.avatar}>•ᴗ•</div>
+                            </NavLink>
                             <button 
                                 className={user.followed ? s['unfollow-btn'] : s['follow-btn']}
                                 onClick={() => user.followed ? this.props.unfollow(user.id) : this.props.follow(user.id)}
