@@ -1,6 +1,6 @@
 import React from "react";
 
-const Preloader = () => {
+const Preloader = (props) => {
     return (
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
