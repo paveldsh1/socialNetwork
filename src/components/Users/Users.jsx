@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Users.module.scss';
 import Preloader from '../common/Preloader/Preloader';
+import Pagination from '../common/Pagination/Pagination';
 
 class Users extends React.Component {
     
@@ -69,43 +70,22 @@ class Users extends React.Component {
         return(
             <div>
                 <div className={s.users}>
-                    {this.props.isFetching ? <Preloader/> : null}
                     <div className={s['users-list']}>
+                        {this.props.isFetching ? <Preloader/> : null}
                         {this.getUsersList()}
                     </div>
                     <div style={{ marginTop: '10px' }}>
-                        <nav aria-label="...">
-                            <ul onClick={(e) => {
-                                    const currentPage = Number(e.target.textContent);
-                                    this.props.setCurrentPage(currentPage);
-                                    this.getUsers(currentPage);
-                                }} class="pagination pagination-sm">
-                                <nav aria-label="...">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span onClick={() => {
-                                                    // console.log(this.props.pagesCount + this.props.pageSize)
-                                                    const prevPage = this.props.pagesCount - this.props.pageSize
-                                                    if (prevPage > 0) {
-                                                        this.props.setPagesCount(prevPage)
-                                                    }
-                                                }} aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        {this.getPageItems()}
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span onClick={(e) => {
-                                                    // console.log(this.props.pagesCount + this.props.pageSize)
-                                                    this.props.setPagesCount(this.props.pagesCount + this.props.pageSize)
-                                                }} aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </ul>
-                        </nav>
+                        {!this.props.isFetching ?
+                            <Pagination 
+                                pagesCount={this.props.pagesCount}
+                                pageSize={this.props.pageSize}
+                                setCurrentPage={this.props.setCurrentPage}
+                                setPagesCount={this.props.setPagesCount}
+                                getUsers={this.getUsers}
+                                getPageItems={this.getPageItems}
+                            />
+                            : null
+                        }
                     </div>
                 </div>
             </div>
