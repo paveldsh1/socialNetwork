@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Users.module.scss';
+import Preloader from '../common/Preloader/Preloader';
 
 class Users extends React.Component {
     
@@ -8,11 +9,13 @@ class Users extends React.Component {
     }
 
     getUsers = (currentPage = 1) => {
+        this.props.toggleIsFetching(true);
         fetch(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`) //https://social-network.samuraijs.com/api/1.0/users?page=2&count=2
             .then(response => response.json())
             .then(data => {
                 this.props.setUsers(data.items);
                 this.props.setTotalUsersCount(data.totalCount);
+                this.props.toggleIsFetching(false);
             });
     }
 
@@ -65,8 +68,8 @@ class Users extends React.Component {
     render() {
         return(
             <div>
-                {/* <button onClick={this.getUsers}>Get users</button> */}
                 <div className={s.users}>
+                    {this.props.isFetching ? <Preloader/> : null}
                     <div className={s['users-list']}>
                         {this.getUsersList()}
                     </div>
