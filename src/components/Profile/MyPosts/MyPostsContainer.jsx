@@ -10,9 +10,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-const MyPostsContainer = connect(mapStateToProps, {
+const actionCreators = {
     updateNewPostText,
     addPost
-})(MyPosts);
+}
+
+const MyPostsContainer = connect(mapStateToProps, actionCreators)(MyPosts);
 
 export default MyPostsContainer;

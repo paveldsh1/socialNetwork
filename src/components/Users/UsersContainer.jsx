@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, {
+const actionCreators = {
     follow,
     unfollow,
     setUsers,
@@ -22,6 +22,8 @@ const UsersContainer = connect(mapStateToProps, {
     setTotalUsersCount,
     setPagesCount,
     toggleIsFetching
- })(Users);
+ }
+
+const UsersContainer = connect(mapStateToProps, actionCreators)(Users);
 
 export default UsersContainer;
