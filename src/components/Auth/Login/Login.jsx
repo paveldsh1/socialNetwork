@@ -28,12 +28,12 @@ const Login = () => {
                     <CloseOutlined style={{ fontSize: '20px', cursor: 'pointer' }} />
                 </div>
                 <Form.Item
-                    label="Имя пользователя"
+                    label="Email адрес"
                     name="username"
-                    rules={[{ required: true, message: 'Пожалуйста, введите ваше имя пользователя!' }]}
+                    rules={[{ required: true, message: 'Пожалуйста, введите ваш Email адрес!' }]}
                     className={styles['login__form-item']}
                 >
-                    <Input placeholder="Введите имя пользователя" />
+                    <Input placeholder="Введите ваш Email адрес" />
                 </Form.Item>
 
                 <Form.Item
