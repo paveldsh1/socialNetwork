@@ -8,20 +8,17 @@ const HeaderContainer = (props) => {
     useEffect(() => {
         fetch(`https://social-network.samuraijs.com/api/1.0/auth/me`,
             {
-                credentials: 'include' // could also try 'same-origin'
+                credentials: 'include' // could also try 'same-origin' or 'include'
             })
             .then(response => response.json())    
             .then(data => {
                 if(data.resultCode === 0) {
-                    debugger
-                    setAuthUserData(data.data);
+                    const {id, email, login} = data.data;
+                    props.setAuthUserData(id, login, email);
                 }
                 else {
-                    debugger
-                    console.log(data.messages[0]);
                     const message = data.messages[0];
-                    setAuthMessage(message);
-                    debugger
+                    props.setAuthMessage(message);
                 }
             });
     }, [])
@@ -30,7 +27,10 @@ const HeaderContainer = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        login: state.auth.login,
+        isAuth: state.auth.isAuth
+    }
 }
 
 export default connect(mapStateToProps, {setAuthUserData, setAuthMessage})(HeaderContainer);
