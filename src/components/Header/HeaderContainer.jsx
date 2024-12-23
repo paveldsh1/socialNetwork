@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import {connect} from "react-redux";
 import Header from './Header';
+import {setAuthUserData, setAuthMessage} from "../../redux/auth-reducer";
 
 const HeaderContainer = (props) => {
     useEffect(() => {
@@ -11,8 +12,17 @@ const HeaderContainer = (props) => {
             })
             .then(response => response.json())    
             .then(data => {
-                console.log('Fetched data:', data);
-                debugger;
+                if(data.resultCode === 0) {
+                    debugger
+                    setAuthUserData(data.data);
+                }
+                else {
+                    debugger
+                    console.log(data.messages[0]);
+                    const message = data.messages[0];
+                    setAuthMessage(message);
+                    debugger
+                }
             });
     }, [])
     
@@ -20,9 +30,8 @@ const HeaderContainer = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {
-    }
+    return {}
 }
 
-export default connect(mapStateToProps, {})(HeaderContainer);
+export default connect(mapStateToProps, {setAuthUserData, setAuthMessage})(HeaderContainer);
 
