@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { setUserProfile } from '../../redux/profile-reducer';
 import {connect} from "react-redux";
 import { withRouter } from "react-router";
+import { usersAPI } from "../../api/api";
 
 const ProfileContainer = (props) => {
     let userId = props.match.params.userId;
@@ -11,11 +12,12 @@ const ProfileContainer = (props) => {
         userId = 2
     }
     useEffect(() => {
-        fetch(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => response.json())
-            .then(data => {
-                props.setUserProfile(data)
-            });
+        const fetchProfileData = async () => {
+            const data = await usersAPI.getProfile(userId);
+            props.setUserProfile(data);
+        };
+
+        fetchProfileData();
     }, [])
 
     return (

@@ -3,6 +3,7 @@ import s from './Users.module.scss';
 import Preloader from '../common/Preloader/Preloader';
 import Pagination from '../common/Pagination/Pagination';
 import { NavLink } from 'react-router-dom';
+import { usersAPI } from '../../api/api';
 
 class Users extends React.Component {
     
@@ -10,17 +11,12 @@ class Users extends React.Component {
         this.getUsers();
     }
 
-    getUsers = (currentPage = 1) => {
+    getUsers = async (currentPage = 1) => {
         this.props.toggleIsFetching(true);
-        fetch(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`,{
-            credentials: 'include'
-        }) //https://social-network.samuraijs.com/api/1.0/users?page=2&count=2
-            .then(response => response.json())
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount);
-                this.props.toggleIsFetching(false);
-            });
+            const data = await usersAPI.getUsers(currentPage, this.props.pageSize)
+            this.props.setUsers(data.items);
+            this.props.setTotalUsersCount(data.totalCount);
+            this.props.toggleIsFetching(false);
     }
 
     getPageItems = () => {
@@ -56,36 +52,16 @@ class Users extends React.Component {
                             </NavLink>
                             <button 
                                 className={user.followed ? s['unfollow-btn'] : s['follow-btn']}
-                                onClick={() => {
+                                onClick={async() => {
                                     if(user.followed) {
-                                        fetch(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                        {   
-                                            method: 'DELETE',
-                                            credentials: 'include', // could also try 'same-origin' or 'include'
-                                            headers: {
-                                                'API-KEY': 'bf136b0e-bdc0-4aaf-a458-73a4e3e9e422'
-                                            }
-                                        })
-                                        .then(response => response.json())    
-                                        .then(data => {
-                                            if(data.resultCode === 0) this.props.unfollow(user.id)
-                                        });
+                                        const data = await usersAPI.followUser(user.id);
+                                        if(data.resultCode === 0) this.props.unfollow(user.id)
                                         
                                     } 
                                     else
                                     { 
-                                        fetch(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                        {   
-                                            method: 'POST',
-                                            credentials: 'include', // could also try 'same-origin' or 'include'
-                                            headers: {
-                                                'API-KEY': 'bf136b0e-bdc0-4aaf-a458-73a4e3e9e422' 
-                                            }
-                                        })
-                                        .then(response => response.json())    
-                                        .then(data => {
-                                            if(data.resultCode === 0) this.props.follow(user.id)
-                                        });
+                                        const data = await usersAPI.unfollowUser(user.id);
+                                        if(data.resultCode === 0) this.props.follow(user.id)
                                     }
                                 }}
                             >
