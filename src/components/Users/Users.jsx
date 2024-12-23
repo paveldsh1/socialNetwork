@@ -12,7 +12,9 @@ class Users extends React.Component {
 
     getUsers = (currentPage = 1) => {
         this.props.toggleIsFetching(true);
-        fetch(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`) //https://social-network.samuraijs.com/api/1.0/users?page=2&count=2
+        fetch(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`,{
+            credentials: 'include'
+        }) //https://social-network.samuraijs.com/api/1.0/users?page=2&count=2
             .then(response => response.json())
             .then(data => {
                 this.props.setUsers(data.items);
@@ -54,7 +56,38 @@ class Users extends React.Component {
                             </NavLink>
                             <button 
                                 className={user.followed ? s['unfollow-btn'] : s['follow-btn']}
-                                onClick={() => user.followed ? this.props.unfollow(user.id) : this.props.follow(user.id)}
+                                onClick={() => {
+                                    if(user.followed) {
+                                        fetch(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                        {   
+                                            method: 'DELETE',
+                                            credentials: 'include', // could also try 'same-origin' or 'include'
+                                            headers: {
+                                                'API-KEY': 'bf136b0e-bdc0-4aaf-a458-73a4e3e9e422'
+                                            }
+                                        })
+                                        .then(response => response.json())    
+                                        .then(data => {
+                                            if(data.resultCode === 0) this.props.unfollow(user.id)
+                                        });
+                                        
+                                    } 
+                                    else
+                                    { 
+                                        fetch(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                        {   
+                                            method: 'POST',
+                                            credentials: 'include', // could also try 'same-origin' or 'include'
+                                            headers: {
+                                                'API-KEY': 'bf136b0e-bdc0-4aaf-a458-73a4e3e9e422' 
+                                            }
+                                        })
+                                        .then(response => response.json())    
+                                        .then(data => {
+                                            if(data.resultCode === 0) this.props.follow(user.id)
+                                        });
+                                    }
+                                }}
                             >
                                 {user.followed ? 'Unfollow' : 'Follow'}
                             </button>
