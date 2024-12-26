@@ -45,13 +45,13 @@ class Users extends React.Component {
         if(this.props.users.length !== 0) 
             return(
                 this.props.users.map(user => (
-                    <div key={user.id} className={s['user-card']}>
-                        <div className={s['user-avatar']}>
-                            <NavLink to={'/profile/' + user.id} className={s['avatar-link']}>
-                                <div className={s.avatar}>•ᴗ•</div>
+                    <div key={user.id} className={s['users__list-card']}>
+                        <div className={s['users__list-card__user-avatar']}>
+                            <NavLink to={'/profile/' + user.id} className={s['users__list-card__user-avatar__avatar-link']}>
+                                <div className={s['users__list-card__user-avatar-avatar']}>•ᴗ•</div>
                             </NavLink>
                             <button 
-                                className={user.followed ? s['unfollow-btn'] : s['follow-btn']}
+                                className={user.followed ? s['users__list-card__user-avatar_unfollow-btn'] : s['users__list-card__user-avatar_follow-btn']}
                                 onClick={async() => {
                                     if(user.followed) {
                                         const data = await usersAPI.followUser(user.id);
@@ -68,9 +68,9 @@ class Users extends React.Component {
                                 {user.followed ? 'Unfollow' : 'Follow'}
                             </button>
                         </div>
-                        <div className={s['user-info']}>
-                            <div className={s['user-name']}>{user.name}</div>
-                            <div className={s['user-status']}>{user.status}</div>
+                        <div className={s['users__list-card__user-info']}>
+                            <div className={s['users__list-card__user-info__user-name']}>{user.name}</div>
+                            <div className={s['users__list-card__user-info__user-status']}>{user.status}</div>
                             {/* <div className="user-location">{user.location.country}, {user.location.city}</div> */}
                         </div>
                     </div>
@@ -82,11 +82,11 @@ class Users extends React.Component {
         return(
             <div>
                 <div className={s.users}>
-                    <div className={s['users-list']}>
+                    <div className={s['users__list']}>
                         {this.props.isFetching ? <Preloader/> : null}
                         {this.getUsersList()}
                     </div>
-                    <div style={{ marginTop: '10px' }}>
+                    <div className={s['users__pagination']}>
                         {!this.props.isFetching ?
                             <Pagination 
                                 pagesCount={this.props.pagesCount}
