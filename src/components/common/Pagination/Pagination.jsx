@@ -7,11 +7,11 @@ const Pagination = (props) => {
                     const currentPage = Number(e.target.textContent);
                     props.setCurrentPage(currentPage);
                     props.getUsers(currentPage);
-                }} class="pagination pagination-sm">
+                }} className="pagination pagination-sm">
                 <nav aria-label="...">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                    <ul className="pagination">
+                        <li className="page-item">
+                            <a className="page-link" href="#" aria-label="Previous">
                                 <span onClick={() => {
                                     // console.log(this.props.pagesCount + this.props.pageSize)
                                     const prevPage = props.pagesCount - props.pageSize
@@ -22,8 +22,8 @@ const Pagination = (props) => {
                             </a>
                         </li>
                         {props.getPageItems()}
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                        <li className="page-item">
+                            <a className="page-link" href="#" aria-label="Next">
                                 <span onClick={(e) => {
                                     // console.log(this.props.pagesCount + this.props.pageSize)
                                     props.setPagesCount(props.pagesCount + props.pageSize)
