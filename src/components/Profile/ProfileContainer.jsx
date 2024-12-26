@@ -1,41 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Profile from "./Profile";
-import { useEffect } from 'react';
 import { setUserProfile } from '../../redux/profile-reducer';
-import {connect} from "react-redux";
-import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { useParams } from "react-router-dom"; // Импортируйте useParams
 import { usersAPI } from "../../api/api";
 
 const ProfileContainer = (props) => {
-    let userId = props.match.params.userId;
-    if(!userId) {
-        userId = 2
-    }
+    const { userId } = useParams();
+    const effectiveUserId = userId || 2;
+
     useEffect(() => {
         const fetchProfileData = async () => {
-            const data = await usersAPI.getProfile(userId);
+            const data = await usersAPI.getProfile(effectiveUserId);
             props.setUserProfile(data);
         };
 
         fetchProfileData();
-    }, [])
+    }, [effectiveUserId]);
 
     return (
-        <Profile {...props}/>
-    )
+        <Profile {...props} />
+    );
 }
 
 const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile
-    }
+    };
 }
 
 const actionCreators = {
     setUserProfile
-}
+};
 
-export default connect(mapStateToProps, actionCreators)(withRouter(ProfileContainer));
-
-
-
+export default connect(mapStateToProps, actionCreators)(ProfileContainer);
