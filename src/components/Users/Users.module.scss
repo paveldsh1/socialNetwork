@@ -52,6 +52,11 @@
                     &:hover {
                         background-color: #27ae60;
                     }
+
+                    &:disabled {
+                        background-color: #a3d9a5;
+                        cursor: not-allowed;
+                    }
                 }
     
                 &_unfollow-btn {
@@ -60,6 +65,11 @@
     
                     &:hover {
                         background-color: #c0392b;
+                    }
+
+                    &:disabled {
+                        background-color: #f5b7b1; 
+                        cursor: not-allowed;
                     }
                 }
             }
