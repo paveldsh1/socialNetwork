@@ -40,7 +40,8 @@ class Users extends React.Component {
     getUsersList = () => {
         if(this.props.users.length !== 0) 
             return(
-                this.props.users.map(user => (
+                this.props.users.map(user => {
+                    return (
                     <div key={user.id} className={s['users__list-card']}>
                         <div className={s['users__list-card__user-avatar']}>
                             <NavLink to={'/profile/' + user.id} className={s['users__list-card__user-avatar__avatar-link']}>
@@ -50,7 +51,6 @@ class Users extends React.Component {
                                 disabled={this.props.followingInProgress.some(id => id === user.id)}
                                 className={user.followed ? s['users__list-card__user-avatar_unfollow-btn'] : s['users__list-card__user-avatar_follow-btn']}
                                 onClick={async() => {
-                                    this.props.toggleFollowingInProgress(true, user.id)
                                     if(user.followed) this.props.followUser(user.id);
                                     else this.props.unfollowUser(user.id);
                                 }}
@@ -64,7 +64,7 @@ class Users extends React.Component {
                             {/* <div className="user-location">{user.location.country}, {user.location.city}</div> */}
                         </div>
                     </div>
-                ))
+                )})
             )
     }
 
