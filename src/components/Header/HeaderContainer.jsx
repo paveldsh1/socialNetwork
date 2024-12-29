@@ -5,7 +5,8 @@ import { setAuthUserData, setAuthMessage, authMe } from "../../redux/auth-reduce
 
 const HeaderContainer = (props) => {
     useEffect(() => {
-        props.authMe();
+        const fetchAuthData = async () => props.authMe();
+        fetchAuthData();
     }, []);
 
     return <Header {...props} />;

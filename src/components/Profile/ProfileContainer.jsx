@@ -8,7 +8,10 @@ const ProfileContainer = (props) => {
     const { userId } = useParams();
     const effectiveUserId = userId || 2;
 
-    useEffect(() => props.getProfile(effectiveUserId), [effectiveUserId]);
+    useEffect(() => {
+        const fetchProfileData  = async () => props.getProfile(effectiveUserId);
+        fetchProfileData ();
+    }, [effectiveUserId]);
 
     return (
         <Profile {...props} />
