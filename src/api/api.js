@@ -29,8 +29,11 @@ export const usersAPI = {
     unfollowUser: (id) => {
         return fetch(`${baseUrl}follow/${id}`, getCommonOptions('POST'))
         .then(handleResponse);
-    },
-    auth: () => {
+    }
+};
+
+export const auth = {
+    authMe: () => {
         return fetch(`${baseUrl}auth/me`, getCommonOptions('GET'))
         .then(handleResponse);
     },

@@ -1,22 +1,14 @@
 import React, { useEffect } from 'react';
 import Profile from "./Profile";
-import { setUserProfile } from '../../redux/profile-reducer';
+import { setUserProfile, getProfile } from '../../redux/profile-reducer';
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom"; // Импортируйте useParams
-import { usersAPI } from "../../api/api";
+import { useParams } from "react-router-dom";
 
 const ProfileContainer = (props) => {
     const { userId } = useParams();
     const effectiveUserId = userId || 2;
 
-    useEffect(() => {
-        const fetchProfileData = async () => {
-            const data = await usersAPI.getProfile(effectiveUserId);
-            props.setUserProfile(data);
-        };
-
-        fetchProfileData();
-    }, [effectiveUserId]);
+    useEffect(() => props.getProfile(effectiveUserId), [effectiveUserId]);
 
     return (
         <Profile {...props} />
@@ -30,7 +22,8 @@ const mapStateToProps = (state) => {
 }
 
 const actionCreators = {
-    setUserProfile
+    setUserProfile,
+    getProfile
 };
 
 export default connect(mapStateToProps, actionCreators)(ProfileContainer);

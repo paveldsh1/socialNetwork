@@ -12,11 +12,7 @@ class Users extends React.Component {
     }
 
     getUsers = async (currentPage = 1) => {
-        this.props.toggleIsFetching(true);
-        const data = await usersAPI.getUsers(currentPage, this.props.pageSize)
-        this.props.setUsers(data.items);
-        this.props.setTotalUsersCount(data.totalCount);
-        this.props.toggleIsFetching(false);
+        this.props.getUsers(currentPage, this.props.pageSize)
     }
 
     getPageItems = () => {
@@ -55,21 +51,8 @@ class Users extends React.Component {
                                 className={user.followed ? s['users__list-card__user-avatar_unfollow-btn'] : s['users__list-card__user-avatar_follow-btn']}
                                 onClick={async() => {
                                     this.props.toggleFollowingInProgress(true, user.id)
-                                    if(user.followed) {
-                                        const data = await usersAPI.followUser(user.id);
-                                        if(data.resultCode === 0) {
-                                            this.props.unfollow(user.id)
-                                            this.props.toggleFollowingInProgress(false, user.id)
-                                        }
-                                    } 
-                                    else
-                                    { 
-                                        const data = await usersAPI.unfollowUser(user.id);
-                                        if(data.resultCode === 0) {
-                                            this.props.follow(user.id)
-                                            this.props.toggleFollowingInProgress(false, user.id)
-                                        }
-                                    }
+                                    if(user.followed) this.props.followUser(user.id);
+                                    else this.props.unfollowUser(user.id);
                                 }}
                             >
                                 {user.followed ? 'Unfollow' : 'Follow'}
