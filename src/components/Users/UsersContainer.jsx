@@ -1,6 +1,7 @@
 import {follow, unfollow, getUsers, setCurrentPage, setPagesCount, toggleFollowingInProgress, followUser, unfollowUser} from "../../../src/redux/users-reducer";
 import Users from "./Users";
 import {connect} from "react-redux";
+import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 
 const mapStateToProps = (state) => {
     return {
@@ -25,6 +26,6 @@ const actionCreators = {
     unfollowUser
  }
 
-const UsersContainer = connect(mapStateToProps, actionCreators)(Users);
+const UsersContainer = connect(mapStateToProps, actionCreators)(withAuthRedirect(Users));
 
 export default UsersContainer;

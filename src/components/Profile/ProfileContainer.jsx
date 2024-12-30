@@ -3,6 +3,7 @@ import Profile from "./Profile";
 import { setUserProfile, getProfile } from '../../redux/profile-reducer';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 
 const ProfileContainer = (props) => {
     const { userId } = useParams();
@@ -10,7 +11,7 @@ const ProfileContainer = (props) => {
 
     useEffect(() => {
         const fetchProfileData  = async () => props.getProfile(effectiveUserId);
-        fetchProfileData ();
+        fetchProfileData();
     }, [effectiveUserId]);
 
     return (
@@ -29,4 +30,4 @@ const actionCreators = {
     getProfile
 };
 
-export default connect(mapStateToProps, actionCreators)(ProfileContainer);
+export default connect(mapStateToProps, actionCreators)(withAuthRedirect(ProfileContainer));
