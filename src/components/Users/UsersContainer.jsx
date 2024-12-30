@@ -2,7 +2,8 @@ import {follow, unfollow, getUsers, setCurrentPage, setPagesCount, toggleFollowi
 import Users from "./Users";
 import {connect} from "react-redux";
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
-
+import {compose} from "redux";
+ 
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -26,6 +27,7 @@ const actionCreators = {
     unfollowUser
  }
 
-const UsersContainer = connect(mapStateToProps, actionCreators)(withAuthRedirect(Users));
-
-export default UsersContainer;
+export default compose(
+    connect(mapStateToProps, actionCreators), 
+    withAuthRedirect
+)(Users);

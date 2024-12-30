@@ -4,6 +4,7 @@ import { setUserProfile, getProfile } from '../../redux/profile-reducer';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
+import {compose} from "redux";
 
 const ProfileContainer = (props) => {
     const { userId } = useParams();
@@ -30,4 +31,7 @@ const actionCreators = {
     getProfile
 };
 
-export default connect(mapStateToProps, actionCreators)(withAuthRedirect(ProfileContainer));
+export default compose(
+    connect(mapStateToProps, actionCreators),
+    withAuthRedirect
+)(ProfileContainer);
