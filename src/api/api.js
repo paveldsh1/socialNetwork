@@ -4,7 +4,8 @@ const getCommonOptions = (method) => ({
     method: method,
     credentials: 'include', // could also try 'same-origin' or 'include'
     headers: {
-        'API-KEY': 'bf136b0e-bdc0-4aaf-a458-73a4e3e9e422'
+        'API-KEY': 'bf136b0e-bdc0-4aaf-a458-73a4e3e9e422',
+        'Content-Type': 'application/json'
     }
 });
 
@@ -36,9 +37,23 @@ export const auth = {
     authMe: () => {
         return fetch(`${baseUrl}auth/me`, getCommonOptions('GET'))
         .then(handleResponse);
-    },
+    }
+};
+
+export const profileAPI = {
     getProfile: (userId) => {
         return fetch(`${baseUrl}profile/${userId}`, getCommonOptions('GET'))
         .then(handleResponse);
-    }
-};
+    },
+    getStatus: (userId) => {
+        return fetch(`${baseUrl}profile/status/${userId}`, getCommonOptions('GET'))
+        .then(handleResponse);
+    },
+    updateStatus: (status) => {
+        return fetch(`${baseUrl}profile/status`, { 
+            ...getCommonOptions('PUT'),
+            body: JSON.stringify({ status })
+        })
+        .then(handleResponse);
+    },
+}

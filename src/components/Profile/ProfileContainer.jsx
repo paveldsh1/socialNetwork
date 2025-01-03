@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Profile from "./Profile";
-import { setUserProfile, getProfile } from '../../redux/profile-reducer';
+import { setUserProfile, getProfile, getStatus, updateStatus } from '../../redux/profile-reducer';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
@@ -11,7 +11,10 @@ const ProfileContainer = (props) => {
     const effectiveUserId = userId || 2;
 
     useEffect(() => {
-        const fetchProfileData  = async () => props.getProfile(effectiveUserId);
+        const fetchProfileData  = async () => {
+            props.getProfile(effectiveUserId);
+            props.getStatus(effectiveUserId);
+        }
         fetchProfileData();
     }, [effectiveUserId]);
 
@@ -22,13 +25,16 @@ const ProfileContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        status: state.profilePage.status
     };
 }
 
 const actionCreators = {
     setUserProfile,
-    getProfile
+    getProfile,
+    getStatus,
+    updateStatus
 };
 
 export default compose(

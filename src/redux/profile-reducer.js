@@ -1,7 +1,8 @@
-import { auth } from "../api/api";
+import { profileAPI } from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     posts: [
@@ -11,7 +12,8 @@ let initialState = {
         {id: 4, message: 'Dada', likesCount: 11}
     ],
     newPostText: 'it-kamasutra.com',
-    profile: null
+    profile: null,
+    status: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -41,6 +43,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             };
         }
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state;
     }
@@ -51,10 +59,23 @@ export const addPost = () => ({type: ADD_POST})
 export const updateNewPostText = (text) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text })
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const setStatus = (status) => ({type: SET_STATUS, status: status})
 
 export const getProfile = (effectiveUserId) => async (dispatch) => {
-    const data = await auth.getProfile(effectiveUserId);
+    const data = await profileAPI.getProfile(effectiveUserId);
     dispatch(setUserProfile(data));    
+}
+
+export const getStatus = (effectiveUserId) => async (dispatch) => {
+    const data = await profileAPI.getStatus(effectiveUserId);
+    dispatch(setStatus(data));
+}
+
+export const updateStatus = (status) => async (dispatch) => {
+    const data = await profileAPI.updateStatus(status);
+    if(data.resultCode === 0){
+        dispatch(setStatus(status));
+    }
 }
 
 export default profileReducer;

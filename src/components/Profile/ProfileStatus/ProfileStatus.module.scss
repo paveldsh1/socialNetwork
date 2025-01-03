@@ -1,0 +1,12 @@
+.container{
+    padding-left: 10px;
+    padding-right: 15rem;
+
+    &__badge {
+        font-size: 1.5rem !important;
+    }
+
+    &__input {
+        margin-top: 0.5rem;
+    }
+}
