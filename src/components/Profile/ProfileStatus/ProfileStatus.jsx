@@ -23,7 +23,7 @@ const ProfileStatus = (props) => {
     return (
         <div className={styles.container}>
             {!editMode ?
-                <span onDoubleClick={activateEditMode} className={`${styles.container__badge} badge bg-secondary`}>{props.status}</span>
+                <span onDoubleClick={activateEditMode} className={`${styles.container__badge} badge bg-secondary`}>{props.status || "-----"}</span>
             :
                 <div className={styles.container__input}>
                     <input 
