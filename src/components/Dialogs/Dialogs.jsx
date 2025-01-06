@@ -2,24 +2,20 @@ import React from 'react';
 import s from './Dialogs.module.scss';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { Form, Button, Input } from 'antd';
+import { Form, Button } from 'antd';
+import { Field, reduxForm } from 'redux-form';
 
 const Dialogs = (props) => {
+    const { handleSubmit } = props;
     let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} />);
     let messagesElements = state.messages.map(m => <Message key={m.id} message={m.message} />);
     let newMessageBody = state.newMessageBody;
 
-    let onNewMessageChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMessageBody(body);
-    }
-
     const onFinish = (values) => {
-        debugger
+        props.updateNewMessageBody(values.message);
         props.sendMessage();
-        props.updateNewMessageBody('');
     };
 
     return (
@@ -30,16 +26,17 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <div>{messagesElements}</div>
                 <Form
-                    onFinish={onFinish}
+                    onFinish={handleSubmit(onFinish)}
                     layout="vertical"
                 >
                     <Form.Item>
-                        <Input.TextArea
-                            value={newMessageBody}
-                            onChange={onNewMessageChange}
-                            placeholder='Enter your message'
-                            rows={1}
-                        />
+                    <Field
+                        name="message"
+                        component="input"
+                        type="text"
+                        placeholder='Enter your message'
+                        value={newMessageBody}
+                    />
                     </Form.Item>
                     <Form.Item>
                         <Button 
@@ -54,4 +51,4 @@ const Dialogs = (props) => {
     );
 }
 
-export default Dialogs;
+export default reduxForm({ form: 'dialog' })(Dialogs);
