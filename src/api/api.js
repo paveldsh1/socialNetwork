@@ -10,7 +10,6 @@ const getCommonOptions = (method) => ({
 });
 
 const handleResponse = (response) => {
-    debugger
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }

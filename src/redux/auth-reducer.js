@@ -51,7 +51,6 @@ export const authMe = () => async (dispatch) => {
 }
 
 export const sendAuthData = (login, email, rememberMe, sendAuthData) => async (dispatch) => {
-    debugger
     const data = await auth.sendAuthData(login, email, rememberMe, sendAuthData);
     if (data.resultCode === 0) {
         dispatch(setEnteredAuthUserData(login, email))

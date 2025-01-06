@@ -11,9 +11,8 @@ const Login = (props) => {
     const [visible, setVisible] = useState(true);
 
     const onFinish = async (values) => {
-        const rememberMe = false;
+        const rememberMe = true;
         const captcha = false;
-        debugger
         props.sendAuthData(values.username, values.password, rememberMe, captcha)
         console.log('Received values:', values);
     };
@@ -27,7 +26,7 @@ const Login = (props) => {
     return (
         <div className={styles['login__overlay']}>
             <Form
-                onSubmit={handleSubmit}
+                // onSubmit={handleSubmit}
                 name="login"
                 onFinish={onFinish}
                 layout="vertical"
