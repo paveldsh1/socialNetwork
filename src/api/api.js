@@ -10,6 +10,7 @@ const getCommonOptions = (method) => ({
 });
 
 const handleResponse = (response) => {
+    debugger
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
@@ -36,6 +37,13 @@ export const usersAPI = {
 export const auth = {
     authMe: () => {
         return fetch(`${baseUrl}auth/me`, getCommonOptions('GET'))
+        .then(handleResponse);
+    },
+    sendAuthData: (login, email, rememberMe, captcha) => {
+        return fetch(`${baseUrl}profile/status`, { 
+            ...getCommonOptions('PUT'),
+            body: JSON.stringify({ login, email, rememberMe, captcha })
+        })
         .then(handleResponse);
     }
 };

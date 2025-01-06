@@ -19,6 +19,7 @@ const App = () => {
                     <Route path='/users' element={<UsersContainer />} />
                     <Route path='/profile/:userId?' element={<ProfileContainer />} />
                     <Route path='/login' element={<Login />} />
+                    <Route path='/' element={<Login />} />
                 </Routes>
             </div>
         </div>

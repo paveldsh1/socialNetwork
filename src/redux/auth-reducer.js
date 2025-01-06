@@ -1,6 +1,7 @@
 import { auth } from "../api/api";
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_AUTH_MESSAGE = 'SET_AUTH_MESSAGE';
+const SET_ENTERED_AUTH_USER_DATA = 'SET_ENTERED_AUTH_USER_DATA';
 
 let initialState = {
     userId: null,
@@ -23,6 +24,12 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 message: action.message
             };
+        case SET_ENTERED_AUTH_USER_DATA:
+            return {
+                ...state,
+                login: action.login,
+                email: action.email
+            }
         default:
             return state;
     }
@@ -30,6 +37,7 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, login, email) => ({type: SET_AUTH_USER_DATA, data: {userId, login, email}})
 export const setAuthMessage = (message) => ({type: SET_AUTH_MESSAGE, message})
+export const setEnteredAuthUserData = (login, email) => ({type: SET_ENTERED_AUTH_USER_DATA, data: {login, email}})
 
 export const authMe = () => async (dispatch) => {
     const data = await auth.authMe();
@@ -39,6 +47,14 @@ export const authMe = () => async (dispatch) => {
     } else {
         const message = data.messages[0];
         dispatch(setAuthMessage(message));
+    }
+}
+
+export const sendAuthData = (login, email, rememberMe, sendAuthData) => async (dispatch) => {
+    debugger
+    const data = await auth.sendAuthData(login, email, rememberMe, sendAuthData);
+    if (data.resultCode === 0) {
+        dispatch(setEnteredAuthUserData(login, email))
     }
 }
 

@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Field, reduxForm } from 'redux-form';
+import { Form, Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import styles from './Login.module.scss';
+import { connect } from 'react-redux';
+import { sendAuthData } from '../../../redux/auth-reducer';
 
-const Login = () => {
+const Login = (props) => {
+    const { handleSubmit } = props
     const [visible, setVisible] = useState(true);
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
+        const rememberMe = false;
+        const captcha = false;
+        debugger
+        props.sendAuthData(values.username, values.password, rememberMe, captcha)
         console.log('Received values:', values);
     };
 
@@ -19,6 +27,7 @@ const Login = () => {
     return (
         <div className={styles['login__overlay']}>
             <Form
+                onSubmit={handleSubmit}
                 name="login"
                 onFinish={onFinish}
                 layout="vertical"
@@ -33,7 +42,8 @@ const Login = () => {
                     rules={[{ required: true, message: 'Пожалуйста, введите ваш Email адрес!' }]}
                     className={styles['login__form-item']}
                 >
-                    <Input placeholder="Введите ваш Email адрес" />
+                    <Field name="email" component="input" type="email" />
+                    {/* <Input placeholder="Введите ваш Email адрес" /> */}
                 </Form.Item>
 
                 <Form.Item
@@ -42,7 +52,8 @@ const Login = () => {
                     rules={[{ required: true, message: 'Пожалуйста, введите ваш пароль!' }]}
                     className={styles['login__form-item']}
                 >
-                    <Input.Password placeholder="Введите пароль" />
+                    <Field name="password" component="input" type="password" />
+                    {/* <Input.Password placeholder="Введите пароль" /> */}
                 </Form.Item>
 
                 <Form.Item>
@@ -58,4 +69,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default connect(null, {sendAuthData})(reduxForm({ form: 'login' })(Login));
