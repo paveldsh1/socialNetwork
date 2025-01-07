@@ -6,7 +6,7 @@ import { Form, Button } from 'antd';
 import { Field, reduxForm } from 'redux-form';
 
 const Dialogs = (props) => {
-    const { handleSubmit } = props;
+    const { handleSubmit, reset } = props;
     let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} />);
@@ -14,8 +14,8 @@ const Dialogs = (props) => {
     let newMessageBody = state.newMessageBody;
 
     const onFinish = (values) => {
-        props.updateNewMessageBody(values.message);
-        props.sendMessage();
+        props.sendMessage(values.message);
+        reset();
     };
 
     return (

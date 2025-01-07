@@ -1,35 +1,31 @@
-import React from 'react';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
-import { Input, Button, Form } from 'antd';
+import { Button, Form } from 'antd';
+import { Field, reduxForm } from 'redux-form';
 
 const MyPosts = (props) => {
-    let postsElements =
-        props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
+    const { handleSubmit, reset } = props;
+
+    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
 
     let onAddPost = (values) => {
-        props.addPost();
-        props.updateNewPostText('');
-    };
-
-    let onPostChange = (e) => {
-        let text = e.target.value;
-        props.updateNewPostText(text);
+        props.addPost(values.message);
+        reset();
     };
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <Form
-                onFinish={onAddPost}
+                onFinish={handleSubmit(onAddPost)}
                 layout="vertical"
             >
                 <Form.Item>
-                    <Input.TextArea 
-                        onChange={onPostChange} 
-                        value={props.newPostText} 
-                        rows={1} 
-                        placeholder="Введите текст поста" 
+                    <Field
+                        name="message"
+                        component="input"
+                        type="text"
+                        placeholder='Введите текст поста'
                     />
                 </Form.Item>
                 <Form.Item>
@@ -47,4 +43,4 @@ const MyPosts = (props) => {
     );
 };
 
-export default MyPosts;
+export default reduxForm({ form: 'posts' })(MyPosts);
