@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import s from './ProfileInfo.module.scss';
 import Preloader from "../../common/Preloader/Preloader";
 
