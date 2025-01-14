@@ -1,9 +1,11 @@
+import React from 'react';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 import { Button, Form } from 'antd';
 import { Field, reduxForm } from 'redux-form';
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
+    console.log("MyPosts", props);
     const { handleSubmit, reset } = props;
 
     let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
@@ -41,6 +43,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default reduxForm({ form: 'posts' })(MyPosts);
