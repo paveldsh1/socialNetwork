@@ -38,10 +38,16 @@ export const auth = {
         return fetch(`${baseUrl}auth/me`, getCommonOptions('GET'))
         .then(handleResponse);
     },
-    sendAuthData: (login, email, rememberMe, captcha) => {
-        return fetch(`${baseUrl}profile/status`, { 
-            ...getCommonOptions('PUT'),
-            body: JSON.stringify({ login, email, rememberMe, captcha })
+    login: (email, password, rememberMe = false) => {
+        return fetch(`${baseUrl}auth/login`, { 
+            ...getCommonOptions('POST'),
+            body: JSON.stringify({ email, password, rememberMe })
+        })
+        .then(handleResponse);
+    },
+    logout:() => {
+        return fetch(`${baseUrl}auth/login`, { 
+            ...getCommonOptions('DELETE')
         })
         .then(handleResponse);
     }

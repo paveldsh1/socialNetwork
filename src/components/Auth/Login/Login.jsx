@@ -4,22 +4,25 @@ import { Form, Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import styles from './Login.module.scss';
 import { connect } from 'react-redux';
-import { sendAuthData } from '../../../redux/auth-reducer';
+import { login } from '../../../redux/auth-reducer';
 import { required, maxLengthCreator } from '../../../utils/validators';
 import { Input } from '../../common/FormsControls/FormsControls';
+import { Navigate } from 'react-router-dom';
 
 const maxLengthCreator50 = maxLengthCreator(50);
 
 const Login = (props) => {
-    const { handleSubmit } = props
+    const { onClose } = props;
     const [visible, setVisible] = useState(true);
 
     const onFinish = async (values) => {
         const rememberMe = true;
-        const captcha = false;
-        props.sendAuthData(values.username, values.password, rememberMe, captcha)
-        console.log('Received values:', values);
+        props.login(values.username, values.password, rememberMe)
     };
+
+    if(props.isAuth) {
+        return <Navigate to="/profile"></Navigate>
+    }
 
     const handleClose = () => {
         setVisible(false);
@@ -30,13 +33,15 @@ const Login = (props) => {
     return (
         <div className={styles['login__overlay']}>
             <Form
-                // onSubmit={handleSubmit}
                 name="login"
                 onFinish={onFinish}
                 layout="vertical"
                 className={styles['login__form-container']}
             >
-                <div className={styles['login__close-button']} onClick={handleClose}>
+                <div className={styles['login__close-button']} onClick={() => {
+                    handleClose()
+                    if(onClose) onClose();
+                }}>
                     <CloseOutlined style={{ fontSize: '20px', cursor: 'pointer' }} />
                 </div>
                 <Form.Item
@@ -80,4 +85,8 @@ const Login = (props) => {
     );
 };
 
-export default connect(null, {sendAuthData})(reduxForm({ form: 'login' })(Login));
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login})(reduxForm({ form: 'login' })(Login));
