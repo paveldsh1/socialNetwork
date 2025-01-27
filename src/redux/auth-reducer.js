@@ -1,4 +1,5 @@
 import { auth } from "../api/api";
+import { stopSubmit } from "redux-form";
 const SET_AUTH_USER_DATA = 'social-network/auth/SET_AUTH_USER_DATA';
 const SET_AUTH_MESSAGE = 'social-network/auth/SET_AUTH_MESSAGE';
 const SET_ENTERED_AUTH_USER_DATA = 'social-network/auth/SET_ENTERED_AUTH_USER_DATA';
@@ -53,6 +54,10 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
     const data = await auth.login(email, password, rememberMe);
     if (data.resultCode === 0) {
         dispatch(authMe())
+    }
+    else {
+        let message = data.messages.length > 0 ? data.messages[0] : "Some error";
+        dispatch(stopSubmit("login", {_error: message}));
     }
 }
 

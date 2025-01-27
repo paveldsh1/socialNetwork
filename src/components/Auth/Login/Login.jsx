@@ -26,6 +26,7 @@ const Login = (props) => {
 
     const handleClose = () => {
         setVisible(false);
+        if(onClose) onClose();
     };
 
     if (!visible) return null;
@@ -38,10 +39,7 @@ const Login = (props) => {
                 layout="vertical"
                 className={styles['login__form-container']}
             >
-                <div className={styles['login__close-button']} onClick={() => {
-                    handleClose()
-                    if(onClose) onClose();
-                }}>
+                <div className={styles['login__close-button']} onClick={handleClose}>
                     <CloseOutlined style={{ fontSize: '20px', cursor: 'pointer' }} />
                 </div>
                 <Form.Item
@@ -52,7 +50,8 @@ const Login = (props) => {
                 >
                     <Field 
                         component={Input}
-                        name="email" 
+                        name="username" 
+                        placeholder="Email"
                         validate={[required, maxLengthCreator50]}
                         type="email" />
                     {/* <Input placeholder="Введите ваш Email адрес" /> */}
@@ -66,12 +65,13 @@ const Login = (props) => {
                 >
                     <Field 
                         component={Input}
-                        name="password" 
+                        name="password"
+                        placeholder="Password" 
                         validate={[required, maxLengthCreator50]}
                         type="password" />
                     {/* <Input.Password placeholder="Введите пароль" /> */}
                 </Form.Item>
-
+                {props.error && <div className={styles['login__form-error']}>{props.error}</div>}
                 <Form.Item>
                     <Button 
                         type="primary" 
