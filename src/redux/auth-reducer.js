@@ -1,7 +1,7 @@
 import { auth } from "../api/api";
-const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
-const SET_AUTH_MESSAGE = 'SET_AUTH_MESSAGE';
-const SET_ENTERED_AUTH_USER_DATA = 'SET_ENTERED_AUTH_USER_DATA';
+const SET_AUTH_USER_DATA = 'social-network/auth/SET_AUTH_USER_DATA';
+const SET_AUTH_MESSAGE = 'social-network/auth/SET_AUTH_MESSAGE';
+const SET_ENTERED_AUTH_USER_DATA = 'social-network/auth/SET_ENTERED_AUTH_USER_DATA';
 
 let initialState = {
     userId: null,

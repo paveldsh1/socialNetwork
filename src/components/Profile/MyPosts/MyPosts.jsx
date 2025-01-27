@@ -3,6 +3,10 @@ import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 import { Button, Form } from 'antd';
 import { Field, reduxForm } from 'redux-form';
+import { required, maxLengthCreator } from '../../../utils/validators';
+import { Input } from '../../common/FormsControls/FormsControls'
+
+const maxLengthCreator10 = maxLengthCreator(10);
 
 const MyPosts = React.memo((props) => {
     console.log("MyPosts", props);
@@ -24,8 +28,9 @@ const MyPosts = React.memo((props) => {
             >
                 <Form.Item>
                     <Field
+                        validate={[required, maxLengthCreator10]}
                         name="message"
-                        component="input"
+                        component={Input}
                         type="text"
                         placeholder='Введите текст поста'
                     />

@@ -5,6 +5,10 @@ import { CloseOutlined } from '@ant-design/icons';
 import styles from './Login.module.scss';
 import { connect } from 'react-redux';
 import { sendAuthData } from '../../../redux/auth-reducer';
+import { required, maxLengthCreator } from '../../../utils/validators';
+import { Input } from '../../common/FormsControls/FormsControls';
+
+const maxLengthCreator50 = maxLengthCreator(50);
 
 const Login = (props) => {
     const { handleSubmit } = props
@@ -41,7 +45,11 @@ const Login = (props) => {
                     rules={[{ required: true, message: 'Пожалуйста, введите ваш Email адрес!' }]}
                     className={styles['login__form-item']}
                 >
-                    <Field name="email" component="input" type="email" />
+                    <Field 
+                        component={Input}
+                        name="email" 
+                        validate={[required, maxLengthCreator50]}
+                        type="email" />
                     {/* <Input placeholder="Введите ваш Email адрес" /> */}
                 </Form.Item>
 
@@ -51,7 +59,11 @@ const Login = (props) => {
                     rules={[{ required: true, message: 'Пожалуйста, введите ваш пароль!' }]}
                     className={styles['login__form-item']}
                 >
-                    <Field name="password" component="input" type="password" />
+                    <Field 
+                        component={Input}
+                        name="password" 
+                        validate={[required, maxLengthCreator50]}
+                        type="password" />
                     {/* <Input.Password placeholder="Введите пароль" /> */}
                 </Form.Item>
 
