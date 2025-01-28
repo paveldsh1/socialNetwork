@@ -6,7 +6,7 @@ const Pagination = (props) => {
             <ul onClick={(e) => {
                     const currentPage = Number(e.target.textContent);
                     props.setCurrentPage(currentPage);
-                    props.getUsers(currentPage);
+                    props.requestUsers(currentPage);
                 }} className="pagination pagination-sm">
                 <nav aria-label="...">
                     <ul className="pagination">

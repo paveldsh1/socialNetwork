@@ -17,7 +17,7 @@ const handleResponse = (response) => {
 }
 
 export const usersAPI = {
-    getUsers: (currentPage, pageSize) => {
+    requestUsers: (currentPage, pageSize) => {
         return fetch(`${baseUrl}users?page=${currentPage}&count=${pageSize}`, {
             credentials: 'include'
         })

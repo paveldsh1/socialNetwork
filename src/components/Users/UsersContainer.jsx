@@ -1,4 +1,4 @@
-import {follow, unfollow, getUsers, setCurrentPage, setPagesCount, toggleFollowingInProgress, followUser, unfollowUser} from "../../../src/redux/users-reducer";
+import {follow, unfollow, requestUsers, setCurrentPage, setPagesCount, toggleFollowingInProgress, followUser, unfollowUser} from "../../../src/redux/users-reducer";
 import Users from "./Users";
 import {connect} from "react-redux";
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
@@ -22,7 +22,7 @@ const actionCreators = {
     setCurrentPage,
     setPagesCount,
     toggleFollowingInProgress,
-    getUsers,
+    requestUsers,
     followUser,
     unfollowUser
  }

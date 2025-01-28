@@ -76,9 +76,9 @@ export const setPagesCount = (pagesCount) => ({type: SET_PAGES_COUNT, pagesCount
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 export const toggleFollowingInProgress = (followingInProgress, id) => ({type: TOGGLE_FOLLOWING_PROGRESS, followingInProgress, id})
 
-export const getUsers = (currentPage, pageSize) => async (dispatch) => {
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    const data = await usersAPI.getUsers(currentPage, pageSize)
+    const data = await usersAPI.requestUsers(currentPage, pageSize)
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
     dispatch(toggleIsFetching(false));
