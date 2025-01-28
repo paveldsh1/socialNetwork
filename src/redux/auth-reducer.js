@@ -48,6 +48,7 @@ export const authMe = () => async (dispatch) => {
         const message = data.messages[0];
         dispatch(setAuthMessage(message));
     }
+    return data;
 }
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
