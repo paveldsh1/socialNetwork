@@ -3,16 +3,17 @@ import Users from "./Users";
 import {connect} from "react-redux";
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 import {compose} from "redux";
+import { memoizedGetUsersSelector, getPageSize, getTotalUsersCount, getCurrentPage, getPagesCount, getIsFetching, getFollowingInProgress } from "../../redux/users-selector"
  
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        pagesCount: state.usersPage.pagesCount,
-        isFetching: state.usersPage.isFetching, 
-        followingInProgress: state.usersPage.followingInProgress
+        users: memoizedGetUsersSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        pagesCount: getPagesCount(state),
+        isFetching: getIsFetching(state), 
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
