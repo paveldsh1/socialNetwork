@@ -1,24 +1,28 @@
 .header {
     grid-area: head;
-    background-color: green;
+    position: sticky;
+    color: white;
+    background-color: gray;
+    border-bottom: 0.1px solid lightgray;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 
-    &__container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-    
-    &__img {
-        width: 7rem;
-    }
-
-    &__text {
+    &__login {
         margin: 10px 20px;
         width: 7rem;
         height: 1.5rem;
     }
 
     &__button{
-        margin: 10px 20px;
+        align-items: center;
+        object-fit: contain;
+    }
+
+    &__title > p {
+        font-weight: 600;
     }
 }
