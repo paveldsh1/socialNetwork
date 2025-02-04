@@ -1,0 +1,83 @@
+.users {
+  padding: 20px;
+}
+.users__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.users__list-card {
+  display: flex;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.users__list-card__user-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+}
+.users__list-card__user-avatar-avatar {
+  width: 60px;
+  height: 60px;
+  background-color: #f0f2f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.users__list-card__user-avatar__avatar-link {
+  text-decoration: none !important; /* Removes the underline */
+  color: inherit; /* Keeps the text color the same as the surrounding text */
+}
+.users__list-card__user-avatar_follow-btn, .users__list-card__user-avatar_unfollow-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.users__list-card__user-avatar_follow-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+.users__list-card__user-avatar_follow-btn:hover {
+  background-color: #27ae60;
+}
+.users__list-card__user-avatar_follow-btn:disabled {
+  background-color: #a3d9a5;
+  cursor: not-allowed;
+}
+.users__list-card__user-avatar_unfollow-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+.users__list-card__user-avatar_unfollow-btn:hover {
+  background-color: #c0392b;
+}
+.users__list-card__user-avatar_unfollow-btn:disabled {
+  background-color: #f5b7b1;
+  cursor: not-allowed;
+}
+.users__list-card__user-info {
+  flex-grow: 1;
+}
+.users__list-card__user-info__user-name {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.users__list-card__user-info__user-status {
+  color: #666;
+  margin-bottom: 10px;
+}
+.users__pagination {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=Users.module.css.map */
