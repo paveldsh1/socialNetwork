@@ -8,11 +8,11 @@ import { usersAPI } from '../../api/api';
 class Users extends React.Component {
     
     componentDidMount() {
-        this.getUsers();
+        this.requestUsers();
     }
 
-    getUsers = async (currentPage = 1) => {
-        this.props.getUsers(currentPage, this.props.pageSize)
+    requestUsers = async (currentPage = 1) => {
+        this.props.requestUsers(currentPage, this.props.pageSize)
     }
 
     getPageItems = () => {
@@ -83,7 +83,7 @@ class Users extends React.Component {
                                 pageSize={this.props.pageSize}
                                 setCurrentPage={this.props.setCurrentPage}
                                 setPagesCount={this.props.setPagesCount}
-                                getUsers={this.getUsers}
+                                requestUsers={this.requestUsers}
                                 getPageItems={this.getPageItems}
                             />
                             : null

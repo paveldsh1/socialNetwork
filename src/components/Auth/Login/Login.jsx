@@ -4,21 +4,29 @@ import { Form, Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import styles from './Login.module.scss';
 import { connect } from 'react-redux';
-import { sendAuthData } from '../../../redux/auth-reducer';
+import { login } from '../../../redux/auth-reducer';
+import { required, maxLengthCreator } from '../../../utils/validators';
+import { Input } from '../../common/FormsControls/FormsControls';
+import { Navigate } from 'react-router-dom';
+
+const maxLengthCreator50 = maxLengthCreator(50);
 
 const Login = (props) => {
-    const { handleSubmit } = props
+    const { onClose } = props;
     const [visible, setVisible] = useState(true);
 
     const onFinish = async (values) => {
         const rememberMe = true;
-        const captcha = false;
-        props.sendAuthData(values.username, values.password, rememberMe, captcha)
-        console.log('Received values:', values);
+        props.login(values.username, values.password, rememberMe)
     };
+
+    if(props.isAuth) {
+        return <Navigate to="/profile"></Navigate>
+    }
 
     const handleClose = () => {
         setVisible(false);
+        if(onClose) onClose();
     };
 
     if (!visible) return null;
@@ -26,7 +34,6 @@ const Login = (props) => {
     return (
         <div className={styles['login__overlay']}>
             <Form
-                // onSubmit={handleSubmit}
                 name="login"
                 onFinish={onFinish}
                 layout="vertical"
@@ -41,7 +48,12 @@ const Login = (props) => {
                     rules={[{ required: true, message: 'Пожалуйста, введите ваш Email адрес!' }]}
                     className={styles['login__form-item']}
                 >
-                    <Field name="email" component="input" type="email" />
+                    <Field 
+                        component={Input}
+                        name="username" 
+                        placeholder="Email"
+                        validate={[required, maxLengthCreator50]}
+                        type="email" />
                     {/* <Input placeholder="Введите ваш Email адрес" /> */}
                 </Form.Item>
 
@@ -51,10 +63,15 @@ const Login = (props) => {
                     rules={[{ required: true, message: 'Пожалуйста, введите ваш пароль!' }]}
                     className={styles['login__form-item']}
                 >
-                    <Field name="password" component="input" type="password" />
+                    <Field 
+                        component={Input}
+                        name="password"
+                        placeholder="Password" 
+                        validate={[required, maxLengthCreator50]}
+                        type="password" />
                     {/* <Input.Password placeholder="Введите пароль" /> */}
                 </Form.Item>
-
+                {props.error && <div className={styles['login__form-error']}>{props.error}</div>}
                 <Form.Item>
                     <Button 
                         type="primary" 
@@ -68,4 +85,8 @@ const Login = (props) => {
     );
 };
 
-export default connect(null, {sendAuthData})(reduxForm({ form: 'login' })(Login));
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login})(reduxForm({ form: 'login' })(Login));

@@ -4,6 +4,10 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Form, Button } from 'antd';
 import { Field, reduxForm } from 'redux-form';
+import { Input } from '../../components/common/FormsControls/FormsControls';
+import { required, maxLengthCreator } from '../../utils/validators';
+
+const maxLengthCreator50 = maxLengthCreator(50);
 
 const Dialogs = (props) => {
     const { handleSubmit, reset } = props;
@@ -32,7 +36,8 @@ const Dialogs = (props) => {
                     <Form.Item>
                     <Field
                         name="message"
-                        component="input"
+                        validate={[required, maxLengthCreator50]}
+                        component={Input}
                         type="text"
                         placeholder='Enter your message'
                         value={newMessageBody}
