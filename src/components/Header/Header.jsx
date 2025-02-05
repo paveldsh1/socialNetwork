@@ -1,5 +1,5 @@
 // import React from 'react';
-import s from './Header.module.scss';
+import s from './_Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import Login from "../Auth/Login/Login";
 import { useState } from "react";
@@ -16,10 +16,11 @@ const Header = (props) => {
     };
 
     return (
-        <header className={s.header}>
-            <div className={s['header__container']}>
-                <img className={s['header__img']} src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' />
-                {props.isAuth ? 
+        <header className={s['header']}>
+            <div className={s['header__title']}>
+                <p>Social Network</p>
+                <div />
+                {props.isAuth ?
                     <div className={`${s['header__text']} badge bg-primary text-wrap`}>
                         {props.login} - <button onClick={props.logout}>Log out</button>
                     </div>
@@ -27,16 +28,29 @@ const Header = (props) => {
                     <>
                         <NavLink to="/login">
                             <button
-                                type="button" 
+                                type="button"
                                 onClick={handleLoginOpen}
                                 className={`${s['header__button']} btn btn-primary`}>
-                                    Login
+                                Login
                             </button>
                         </NavLink>
-                        {isLoginVisible && <Login onClose={handleLoginClose}/>}
+                        {isLoginVisible && <Login onClose={handleLoginClose} />}
                     </>
                 }
             </div>
+            {props.isAuth ?
+                <div className={`${s['header__login']} badge bg-primary text-wrap`}>
+                    Login: {props.login}
+                </div>
+                :
+                <NavLink to="/login">
+                    <button
+                        type="button"
+                        className={`${s['header__button']} btn btn-primary`}>
+                        Login
+                    </button>
+                </NavLink>
+            }
         </header>
     )
 }

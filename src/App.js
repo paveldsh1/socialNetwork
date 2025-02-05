@@ -1,5 +1,5 @@
 // import React from 'react';
-import './App.css';
+import './_App.scss';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -16,19 +16,19 @@ import Preloader from './components/common/Preloader/Preloader';
 const App = (props) => {
 
     useEffect(() => {
-        if(props){
+        if (props) {
             const initializeApp = async () => props.initializeApp();
             initializeApp();
         }
     }, []);
 
-    if(!props.initialized) return Preloader;
+    if (!props.initialized) return Preloader;
     else {
         return (
-            <div className='app-wrapper'>
+            <div className='app'>
                 <HeaderContainer />
                 <Navbar />
-                <div className='app-wrapper-content'>
+                <div className='app__main'>
                     <Routes>
                         <Route path='/dialogs' element={<DialogsContainer />} />
                         <Route path='/users' element={<UsersContainer />} />
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default connect(mapStateToProps, { initializeApp })(App);

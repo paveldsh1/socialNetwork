@@ -1,0 +1,12 @@
+.container {
+  padding-left: 10px;
+  padding-right: 15rem;
+}
+.container__badge {
+  font-size: 1.5rem !important;
+}
+.container__input {
+  margin-top: 0.5rem;
+}
+
+/*# sourceMappingURL=ProfileStatus.module.css.map */
