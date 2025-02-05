@@ -18,38 +18,24 @@ const Header = (props) => {
     return (
         <header className={s['header']}>
             <div className={s['header__title']}>
-                <p>Social Network</p>
-                <div />
-                {props.isAuth ?
-                    <div className={`${s['header__text']} badge bg-primary text-wrap`}>
-                        {props.login} - <button onClick={props.logout}>Log out</button>
-                    </div>
-                    :
-                    <>
-                        <NavLink to="/login">
-                            <button
-                                type="button"
-                                onClick={handleLoginOpen}
-                                className={`${s['header__button']} btn btn-primary`}>
-                                Login
-                            </button>
-                        </NavLink>
-                        {isLoginVisible && <Login onClose={handleLoginClose} />}
-                    </>
-                }
+                Social Network
             </div>
             {props.isAuth ?
-                <div className={`${s['header__login']} badge bg-primary text-wrap`}>
-                    Login: {props.login}
+                <div className={`${s['header__login']}`}>
+                    {props.login} - <button type="button" className='badge bg-primary' onClick={props.logout}>Log out</button>
                 </div>
                 :
-                <NavLink to="/login">
-                    <button
-                        type="button"
-                        className={`${s['header__button']} btn btn-primary`}>
-                        Login
-                    </button>
-                </NavLink>
+                <>
+                    <NavLink to="/login">
+                        <button
+                            type="button"
+                            onClick={handleLoginOpen}
+                            className='btn btn-primary'>
+                            Login
+                        </button>
+                    </NavLink>
+                    {isLoginVisible && <Login onClose={handleLoginClose} />}
+                </>
             }
         </header>
     )

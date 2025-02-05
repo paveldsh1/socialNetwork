@@ -12,17 +12,16 @@
     align-items: center;
 
     &__login {
-        margin: 10px 20px;
-        width: 7rem;
-        height: 1.5rem;
+        // margin: 10px 20px;
+        // height: 1.5rem;
     }
 
     &__button{
-        align-items: center;
-        object-fit: contain;
+        // align-items: center;
+        // object-fit: contain;
     }
 
-    &__title > p {
+    &__title {
         font-weight: 600;
     }
 }
