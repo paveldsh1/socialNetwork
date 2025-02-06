@@ -8,4 +8,8 @@
             background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;;
         }
     }
+
+    &__input {
+        height: rem(34);
+    }
 }

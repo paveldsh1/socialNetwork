@@ -13,10 +13,10 @@ const Profile = (props) => {
 
     return (
         <div className={style['profile']}>
-            <div className="profile__avatar">
+            <div className={style['profile__avatar']}>
                 <Image src={props.profile.photos.large} />
             </div>
-            <div className="profile__body">
+            <div>
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                 <ProfileInfo profile={props.profile} />
                 <MyPostsContainer />

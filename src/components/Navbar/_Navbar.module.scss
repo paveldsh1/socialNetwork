@@ -4,11 +4,13 @@
     grid-area: navbar;
     position: sticky;
     top: rem(75);
-    padding: rem(10);
-    border-radius: 10px;
-    border: 1px solid lightgray;
-    height: fit-content;
-    width: fit-content;
-    text-align: center;
     justify-self: end;
+
+    &__container {
+        margin-left: rem(20);
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        padding: rem(10);
+        text-align: center;
+    }
 }
