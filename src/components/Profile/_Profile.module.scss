@@ -11,4 +11,8 @@
     & > *:last-child {
         margin-right: rem(20);
     }
+
+    &__content {
+        width: rem(300);
+    }
 }

@@ -1,15 +1,22 @@
 @use '../../../styles/helpers' as *;
 
-.profileStatus{
+.profileStatus {
     &__badge {
         font-size: rem(20) !important;
+        width: rem(300);
+        text-align: left;
+        display: inline-block;
 
         &:hover {
-            background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;;
+            background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
         }
     }
 
     &__input {
         height: rem(34);
+    }
+
+    &__input > form > button {
+        display: none;
     }
 }
