@@ -21,7 +21,7 @@ const Header = (props) => {
                 Social Network
             </div>
             {props.isAuth ?
-                <div className={`${s['header__login']}`}>
+                <div>
                     {props.login} - <button type="button" className='badge bg-primary' onClick={props.logout}>Log out</button>
                 </div>
                 :

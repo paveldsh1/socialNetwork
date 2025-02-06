@@ -1,5 +1,5 @@
 // import React from 'react';
-import s from './ProfileInfo.module.scss';
+import s from './_ProfileInfo.module.scss';
 import Preloader from "../../common/Preloader/Preloader";
 
 const ProfileInfo = (props) => {
@@ -8,9 +8,10 @@ const ProfileInfo = (props) => {
     }
 
     return (
-        <div>
+        <div className=''>
             <div>
                 <img
+                    class="img-thumbnail"
                     src={props.profile.photos.large}
                     alt="Profile"
                 />

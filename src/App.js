@@ -28,7 +28,7 @@ const App = (props) => {
             <div className='app'>
                 <HeaderContainer />
                 <Navbar />
-                <div className='app__main'>
+                <main className='app__main'>
                     <Routes>
                         <Route path='/dialogs' element={<DialogsContainer />} />
                         <Route path='/users' element={<UsersContainer />} />
@@ -36,7 +36,7 @@ const App = (props) => {
                         <Route path='/login' element={<Login />} />
                         <Route path='/' element={<Login />} />
                     </Routes>
-                </div>
+                </main>
             </div>
         );
     }
