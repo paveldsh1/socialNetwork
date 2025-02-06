@@ -30,5 +30,9 @@
 .login__submit-button {
   width: 100%;
 }
+.login__form-error {
+  color: red;
+  margin-bottom: 0.5rem;
+}
 
 /*# sourceMappingURL=Login.module.css.map */

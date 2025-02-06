@@ -21,7 +21,6 @@ const MyPosts = React.memo((props) => {
 
     return (
         <div className={s.postsBlock}>
-            <h3>My posts</h3>
             <Form
                 onFinish={handleSubmit(onAddPost)}
                 layout="vertical"
@@ -32,14 +31,14 @@ const MyPosts = React.memo((props) => {
                         name="message"
                         component={Input}
                         type="text"
-                        placeholder='Введите текст поста'
+                        placeholder='Enter the text of the post'
                     />
                 </Form.Item>
                 <Form.Item>
                     <Button 
                         type="primary" 
                         htmlType="submit">
-                        Добавить пост
+                        Add a post
                     </Button>
                 </Form.Item>
             </Form>

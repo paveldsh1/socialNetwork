@@ -1,3 +1,23 @@
-.descriptionBlock {
-    padding: 10px;
+@use '../../../styles/helpers' as *;
+
+.description {
+    padding-top: rem(10);
+
+    &__container {
+        padding: rem(10);
+        border: 1px solid lightgray;
+        border-radius: rem(10);
+    }
+
+    &__container > p {
+        margin-bottom: 0;
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+
+    &__title {
+        margin-bottom: 0;
+    }
 }
