@@ -1,3 +1,15 @@
+@use '../../styles/helpers' as *;
+
 .profile {
     display: flex;
+    min-width: rem(800);
+    gap: rem(20);
+
+    &__avatar {
+        width: rem(500);
+    }
+
+    // &__body {
+    //     width: rem(100) !important;
+    // }
 }

@@ -4,8 +4,8 @@
     display: grid;
     grid-template-areas: "head head" "navbar main";
     grid-template-rows: rem(60) 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: rem(10);
+    grid-template-columns: 5fr 10fr;
+    grid-gap: rem(15);
 
     &__main {
         grid-area: main;

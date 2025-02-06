@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProfileStatus.module.scss';
+import styles from './_ProfileStatus.module.scss';
 import { useState } from 'react';
 
 const ProfileStatus = (props) => {
@@ -21,17 +21,17 @@ const ProfileStatus = (props) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles['profileStatus']}>
             {!editMode ?
-                <span onDoubleClick={activateEditMode} className={`${styles.container__badge} badge bg-secondary`}>{props.status || "-----"}</span>
+                <span onClick={activateEditMode} className={`${styles['profileStatus__badge']} badge bg-secondary`}>{props.status || "-----"}</span>
             :
-                <div className={styles.container__input}>
+                <div className={styles['profileStatus__input']}>
                     <input 
                         onChange={onStatusChange}
                         autoFocus={true} 
                         onBlur={deactivateEditMode} 
                         value={status} 
-                        class="form-control" 
+                        className="form-control" 
                         type="text" 
                         placeholder="Default input" 
                         aria-label="default input example"/>

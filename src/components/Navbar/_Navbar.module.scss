@@ -3,12 +3,12 @@
 .navbar {
     grid-area: navbar;
     position: sticky;
-    top: rem(70);
+    top: rem(75);
     padding: rem(10);
     border-radius: 10px;
     border: 1px solid lightgray;
     height: fit-content;
     width: fit-content;
     text-align: center;
-    justify-self: center;
+    justify-self: end;
 }

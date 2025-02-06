@@ -1,0 +1,11 @@
+@use '../../../styles/helpers' as *;
+
+.profileStatus{
+    &__badge {
+        font-size: rem(20) !important;
+
+        &:hover {
+            background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;;
+        }
+    }
+}
