@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import s from './_Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import Login from "../Auth/Login/Login";

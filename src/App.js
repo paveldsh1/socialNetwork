@@ -1,4 +1,3 @@
-// import React from 'react';
 import './_App.scss';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
@@ -22,7 +21,7 @@ const App = (props) => {
         }
     }, []);
 
-    if (!props.initialized) return Preloader;
+    if (!props.initialized) return <Preloader/>;
     else {
         return (
             <div className='app'>
