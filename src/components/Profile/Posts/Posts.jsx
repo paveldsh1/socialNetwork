@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './MyPosts.module.scss';
+import s from './_Posts.module.scss';
 import Post from './Post/Post';
 import { Button, Form } from 'antd';
 import { Field, reduxForm } from 'redux-form';
@@ -8,8 +8,7 @@ import { Input } from '../../common/FormsControls/FormsControls'
 
 const maxLengthCreator10 = maxLengthCreator(10);
 
-const MyPosts = React.memo((props) => {
-    console.log("MyPosts", props);
+const Posts = React.memo((props) => {
     const { handleSubmit, reset } = props;
 
     let postsElements = [...props.posts].reverse().map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
@@ -49,4 +48,4 @@ const MyPosts = React.memo((props) => {
     );
 });
 
-export default reduxForm({ form: 'posts' })(MyPosts);
+export default reduxForm({ form: 'posts' })(Posts);

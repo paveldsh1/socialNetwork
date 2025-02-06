@@ -1,5 +1,5 @@
 import {addPost} from "../../../redux/profile-reducer";
-import MyPosts from "./MyPosts";
+import Posts from "./Posts";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
@@ -15,4 +15,4 @@ const actionCreators = {
 
 export default compose(
     connect(mapStateToProps, actionCreators)
-)(MyPosts);
+)(Posts);

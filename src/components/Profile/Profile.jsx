@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './_Profile.module.scss';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import PostsContainer from "./Posts/PostsContainer";
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { Image } from "antd";
 import Preloader from "../common/Preloader/Preloader";
@@ -19,7 +19,7 @@ const Profile = (props) => {
             <div className={style['profile__content']}>
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                 <ProfileInfo profile={props.profile} />
-                <MyPostsContainer />
+                <PostsContainer />
             </div>
         </div>
     )
