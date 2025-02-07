@@ -1,0 +1,23 @@
+@use '../../../../styles/helpers' as *;
+
+.post {
+  background-color: lightgray;
+  padding: rem(10);
+  margin-bottom: rem(10);
+  border-radius: rem(10);
+  border: rem(1) solid lightgray;
+  border-radius: rem(10);
+
+  &__button {
+    display: inline;
+  }
+
+  &__button > button:where(:not([class])) {
+    color: #0571ed;
+  }
+
+  &__button > button {
+    border: rem(1) solid lightgray;
+    border-radius: rem(10);
+  }
+}

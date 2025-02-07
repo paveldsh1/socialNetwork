@@ -1,14 +1,29 @@
-import React from 'react';
-import s from './Post.module.scss';
+import React, { useRef, useState } from 'react';
+import style from './_Post.module.scss';
 
 const Post = (props) => {
+  const likeButtonRef = useRef(null);
+  const [liked, setLiked] = useState(false);
+
+  const handleLike = () => {
+    setLiked(!liked);
+  }
+
   return (
-    <div className={s.item}>
-      <img src='https://movies4maniacs.liberty.me/wp-content/uploads/sites/1218/2015/09/avatarsucks.jpg' />
-        { props.message }
-          <div>
-        <span>like</span> { props.likesCount }
+    <div className={style['post']}>
+      <div className={style['post__body']}>
+        <p>{props.message}</p>
       </div>
+      <div className={style['post__button']}>
+        <button
+          ref={likeButtonRef}
+          onClick={handleLike}
+          className={liked ? style['liked'] : ''}
+        >
+          Like
+        </button>
+      </div>
+      {' '}{props.likesCount}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './_Posts.module.scss';
+import style from './_Posts.module.scss';
 import Post from './Post/Post';
 import { Button, Form } from 'antd';
 import { Field, reduxForm } from 'redux-form';
@@ -19,7 +19,7 @@ const Posts = React.memo((props) => {
     };
 
     return (
-        <div className={s.postsBlock}>
+        <div className={style["posts"]}>
             <Form
                 onFinish={handleSubmit(onAddPost)}
                 layout="vertical"
@@ -34,16 +34,14 @@ const Posts = React.memo((props) => {
                     />
                 </Form.Item>
                 <Form.Item>
-                    <Button 
-                        type="primary" 
+                    <Button
+                        type="primary"
                         htmlType="submit">
                         Add a post
                     </Button>
                 </Form.Item>
             </Form>
-            <div className={s.posts}>
-                {postsElements}
-            </div>
+            {postsElements}
         </div>
     );
 });

@@ -1,7 +1,5 @@
-.postsBlock {
-    padding: 10px;
-}
+@use '../../../styles/helpers' as *;
 
 .posts {
-    margin-top: 10px;
+    margin-top: rem(50);
 }

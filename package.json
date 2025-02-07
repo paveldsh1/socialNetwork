@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/material": "^6.4.3",
     "antd": "^5.22.6",
     "bootstrap": "^5.3.3",
     "node": "^23.5.0",
