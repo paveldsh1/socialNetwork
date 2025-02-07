@@ -1,0 +1,8 @@
+@use '../../../styles/helpers' as *;
+
+.message {
+    border: rem(0.1) solid lightgray;
+    border-radius: rem(10);
+    padding: rem(10);
+    margin-bottom: rem(10);
+}

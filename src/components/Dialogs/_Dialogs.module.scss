@@ -1,21 +1,15 @@
+@use '../../styles/helpers' as *;
+
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
 
-    .dialogsItems {
-        padding: 10px;
+    &__items {
+        padding: rem(10);
         color: white;
-
-        .active {
-            color: gold;
-        }
     }
 
-    .messages {
-        padding: 10px;
-
-        .message {
-            color: white;
-        }
+    &__messages {
+        padding: rem(10);
     }
 }

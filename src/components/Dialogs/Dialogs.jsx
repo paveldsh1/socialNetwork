@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './_Dialogs.module.scss';
+import style from './_Dialogs.module.scss';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Form, Button } from 'antd';
@@ -23,12 +23,12 @@ const Dialogs = (props) => {
     };
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+        <div className={style['dialogs']}>
+            <div className={style['dialogs__items']}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
-                <div>{messagesElements}</div>
+            <div className={style['dialogs__messages']}>
+                {messagesElements}
                 <Form
                     onFinish={handleSubmit(onFinish)}
                     layout="vertical"

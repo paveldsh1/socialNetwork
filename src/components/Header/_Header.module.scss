@@ -1,9 +1,11 @@
+@use '../../styles/helpers' as *;
+
 .header {
     grid-area: head;
     position: sticky;
     color: white;
     background-color: gray;
-    border-bottom: 0.1px solid lightgray;
+    border-bottom: rem(0.1) solid lightgray;
     width: 100%;
     top: 0;
     z-index: 999;
