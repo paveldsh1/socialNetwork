@@ -10,10 +10,13 @@
         gap: rem(20);
 
         &-card {
+            min-width: rem(120);
+            width: calc(30vw + 100px);
             display: flex;
             padding: rem(15);
             background-color: #fff;
-            border-radius: rem(8);
+            border: rem(0.1) solid lightgray;
+            border-radius: rem(10);
             box-shadow: 0 rem(2) rem(4) rgba(0, 0, 0, 0.1);
 
             &__user-avatar {
@@ -26,6 +29,7 @@
                 &-avatar {
                     width: rem(60);
                     height: rem(60);
+                    border: rem(0.1) solid lightgray;
                     background-color: #f0f2f5;
                     border-radius: 50%;
                     display: flex;
