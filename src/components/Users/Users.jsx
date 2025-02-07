@@ -28,11 +28,11 @@ class Users extends React.Component {
             if (counter > this.props.pageSize) return;
             if (this.props.currentPage === p) {
                 return(
-                    <li className="page-item active" aria-current="page"><a className="page-link" href="#">{p}</a></li>
+                    <li key={p} className="page-item active" aria-current="page"><a className="page-link" href="#">{p}</a></li>
                 );
             }
             return(
-                <li className="page-item"><a className="page-link" href="#">{p}</a></li>
+                <li key={p} className="page-item"><a className="page-link" href="#">{p}</a></li>
             );
         });
     }
