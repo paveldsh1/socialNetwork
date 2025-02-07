@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Dialogs.module.scss';
+import s from './_Dialogs.module.scss';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Form, Button } from 'antd';

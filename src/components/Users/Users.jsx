@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Users.module.scss';
+import s from './_Users.module.scss';
 import Preloader from '../common/Preloader/Preloader';
 import Pagination from '../common/Pagination/Pagination';
 import { NavLink } from 'react-router-dom';

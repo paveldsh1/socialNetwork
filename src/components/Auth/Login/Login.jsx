@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import styles from './Login.module.scss';
+import styles from './_Login.module.scss';
 import { connect } from 'react-redux';
 import { login } from '../../../redux/auth-reducer';
 import { required, maxLengthCreator } from '../../../utils/validators';
