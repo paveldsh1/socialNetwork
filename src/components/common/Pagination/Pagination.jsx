@@ -11,24 +11,21 @@ const Pagination = (props) => {
                 <nav aria-label="...">
                     <ul className="pagination">
                         <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Previous">
-                                <span onClick={() => {
-                                    // console.log(this.props.pagesCount + this.props.pageSize)
-                                    const prevPage = props.pagesCount - props.pageSize
+                            {/* <a className="page-link" href="#" aria-label="Previous"> */}
+                                <span className="page-link" onClick={() => {                                    const prevPage = props.pagesCount - props.pageSize
                                     if (prevPage > 0) {
                                         props.setPagesCount(prevPage)
                                     }
                                 }} aria-hidden="true">&laquo;</span>
-                            </a>
+                            {/* </a> */}
                         </li>
                         {props.getPageItems()}
                         <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Next">
-                                <span onClick={(e) => {
-                                    // console.log(this.props.pagesCount + this.props.pageSize)
+                            {/* <a className="page-link" href="#" aria-label="Next" onClick={(e) => e.preventDefault()}> */}
+                                <span className="page-link" onClick={(e) => {
                                     props.setPagesCount(props.pagesCount + props.pageSize)
                                 }} aria-hidden="true">&raquo;</span>
-                            </a>
+                            {/* </a> */}
                         </li>
                     </ul>
                 </nav>
