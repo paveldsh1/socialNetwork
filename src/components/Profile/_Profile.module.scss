@@ -6,6 +6,9 @@
 
     &__avatar {
         width: rem(250);
+        height: rem(250);
+        display: flex;
+        justify-content: center;
     }
 
     & > *:last-child {

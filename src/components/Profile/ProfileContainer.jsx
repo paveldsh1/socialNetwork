@@ -8,7 +8,7 @@ import {compose} from "redux";
 
 const ProfileContainer = (props) => {
     const { userId } = useParams();
-    const effectiveUserId = userId || 2;
+    const effectiveUserId = userId || 31966;
 
     useEffect(() => {
         const fetchProfileData  = async () => {
